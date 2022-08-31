@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/quoteListFragment">
+
+    <fragment
+        android:id="@+id/quoteListFragment"
+        android:name="pl.glownia.maciej.stoicbreath.ui.fragments.QuoteListFragment"
+        android:label="QuoteListFragment">
+        <action
+            android:id="@+id/action_quoteListFragment_to_singleQuoteFragment"
+            app:destination="@id/singleQuoteFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleQuoteFragment"
+        android:name="pl.glownia.maciej.stoicbreath.ui.fragments.SingleQuoteFragment"
+        android:label="SingleQuoteFragment" />
+    <fragment
+        android:id="@+id/searchQuoteFragment"
+        android:name="pl.glownia.maciej.stoicbreath.ui.fragments.SearchQuoteFragment"
+        android:label="SearchQuoteFragment">
+        <action
+            android:id="@+id/action_searchQuoteFragment_to_singleQuoteFragment"
+            app:destination="@id/singleQuoteFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedQuoteFragment"
+        android:name="pl.glownia.maciej.stoicbreath.ui.fragments.SavedQuoteFragment"
+        android:label="SavedQuoteFragment">
+        <action
+            android:id="@+id/action_savedQuoteFragment_to_singleQuoteFragment"
+            app:destination="@id/singleQuoteFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+</navigation>
