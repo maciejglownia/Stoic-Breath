@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/quoteListFragment"
+        android:title="Stoic Breath"
+        android:icon="@drawable/ic_quote"/>
+
+    <item android:id="@+id/savedQuoteFragment"
+        android:title="Favorites"
+        android:icon="@drawable/ic_favorite"/>
+
+    <item android:id="@+id/searchQuoteFragment"
+        android:title="Search..."
+        android:icon="@drawable/ic_search"/>
+</menu>
