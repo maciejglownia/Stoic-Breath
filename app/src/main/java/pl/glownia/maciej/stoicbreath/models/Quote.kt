@@ -1,4 +1,4 @@
-package pl.glownia.maciej.stoicbreath
+package pl.glownia.maciej.stoicbreath.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

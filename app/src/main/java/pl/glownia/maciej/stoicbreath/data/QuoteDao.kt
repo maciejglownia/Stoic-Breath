@@ -2,7 +2,7 @@ package pl.glownia.maciej.stoicbreath.data
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
-import pl.glownia.maciej.stoicbreath.Quote
+import pl.glownia.maciej.stoicbreath.models.Quote
 
 @Dao
 interface QuoteDao {

@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import pl.glownia.maciej.stoicbreath.Quote
+import pl.glownia.maciej.stoicbreath.models.Quote
 
 @Database(
     entities = [Quote::class],
