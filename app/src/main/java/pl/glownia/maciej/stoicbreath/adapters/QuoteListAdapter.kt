@@ -28,28 +28,26 @@ class QuoteListAdapter(
         private var binding: ItemQuoteViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(quote: Quote) {
-            binding.tvSentence.text = quote.body
-            binding.tvAuthor.text = quote.author
-            binding.tvSource.text = quote.quotesource
+            binding.apply {
+                tvSentence.text = quote.body
+                tvAuthor.text = quote.author
+                tvSource.text = quote.quotesource
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuoteViewHolder {
-        val viewHolder = QuoteViewHolder(
-            ItemQuoteViewBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+        val layoutInflater = LayoutInflater.from(parent.context)
+        return QuoteViewHolder(
+            ItemQuoteViewBinding.inflate(layoutInflater, parent, false)
         )
-        viewHolder.itemView.setOnClickListener {
-            val position = viewHolder.adapterPosition
-            onItemClicked(getItem(position))
-        }
-        return viewHolder
     }
 
     override fun onBindViewHolder(holder: QuoteListAdapter.QuoteViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val quote = getItem(position)
+        holder.itemView.setOnClickListener {
+            onItemClicked(quote)
+        }
+        holder.bind(quote)
     }
 }
