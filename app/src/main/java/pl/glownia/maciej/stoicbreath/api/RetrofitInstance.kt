@@ -20,12 +20,12 @@ class RetrofitInstance {
                 .client(client)
                 .build()
         }
-    }
 
-    /**
-     * API object we will use everywhere to network request
-     */
-    val api by lazy {
-        retrofit.create(QuotesApi::class.java)
+        /**
+         * API object we will use everywhere to network request
+         */
+        val api by lazy {
+            retrofit.create(QuotesApi::class.java)
+        }
     }
 }

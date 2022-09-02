@@ -9,9 +9,7 @@ import androidx.room.PrimaryKey
 data class Quote(
     val author: String,
     val body: String,
-    val document_with_weights: String,
     @PrimaryKey
     val id: Int,
-    val keywords: List<String>,
     val quotesource: String
 )
