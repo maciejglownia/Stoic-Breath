@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/quoteListFragment"
-        android:title="Stoic Breath"
-        android:icon="@drawable/ic_quote"/>
+    <item
+        android:id="@+id/quoteListFragment"
+        android:icon="@drawable/ic_quote"
+        android:title="@string/stoic_breath" />
 
-    <item android:id="@+id/savedQuoteFragment"
-        android:title="Favorites"
-        android:icon="@drawable/ic_favorite"/>
+    <item
+        android:id="@+id/savedQuoteFragment"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favorites" />
 
-    <item android:id="@+id/searchQuoteFragment"
-        android:title="Search..."
-        android:icon="@drawable/ic_search"/>
+    <item
+        android:id="@+id/randomQuoteFragment"
+        android:icon="@drawable/ic_random"
+        android:title="@string/random_quote" />
 </menu>
