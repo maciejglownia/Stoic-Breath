@@ -12,7 +12,6 @@ import pl.glownia.maciej.stoicbreath.repository.QuoteRepository
 import retrofit2.HttpException
 import java.io.IOException
 
-
 class QuoteListViewModel(
     private val quoteDao: QuoteDao,
     repository: QuoteRepository,
@@ -20,12 +19,53 @@ class QuoteListViewModel(
 
     private val quoteRepository: QuoteRepository = repository
 
+    private val _quotes: LiveData<List<Quote>> = quoteRepository.getQuotes().asLiveData()
+    val quotes: LiveData<List<Quote>> = _quotes
+
+    private val _favoritesQuotes: LiveData<List<Quote>> =
+        quoteRepository.getFavoriteQuotes().asLiveData()
+    val favoritesQuotes: LiveData<List<Quote>> = _favoritesQuotes
+
     init {
         getQuotesFromApi()
     }
 
+    /**
+     * Gets random quote from database
+     */
+    fun getQuoteById(): LiveData<Quote> {
+        val randomNumber = getRandomNumberInRangeOfTableSize()
+        return quoteRepository.getQuoteById(randomNumber).asLiveData()
+    }
+
+    private fun getRandomNumberInRangeOfTableSize() = (0..getSizeOfTable()).random()
+
+    private fun getSizeOfTable(): Int = quoteRepository.getSizeOfTable()
+
+    /**
+     * Adds quote to favorites
+     */
+    fun addQuoteToFavorites(quote: Quote) = viewModelScope.launch {
+        quote.isFavorite = true
+        quoteRepository.update(quote)
+    }
+
+    /**
+     * Removes quote from favorites
+     */
+    fun deleteQuoteFromFavorites(quote: Quote) = viewModelScope.launch {
+        quote.isFavorite = false
+        quoteRepository.update(quote)
+    }
+
+    /**
+     * Gets quotes from Api if there are not in database
+     */
     private fun getQuotesFromApi() {
-        Log.e("QuoteListViewModel","getQuotesFromApi: Is checking if database contains any data...")
+        Log.e(
+            "QuoteListViewModel",
+            "getQuotesFromApi: Is checking if database contains any data..."
+        )
         val sizeOfTable = quoteRepository.getSizeOfTable()
         if (sizeOfTable == 0) {
             viewModelScope.launch {
@@ -38,9 +78,7 @@ class QuoteListViewModel(
                     Log.e("QuoteListViewModel", "getQuotesFromApi: Getting quotes from Api...")
                     val response = quoteRepository.getQuotesFromApi()
                     Log.e("QuoteListViewModel", "getQuotesFromApi: Clearing database...")
-                    quoteDao.clearQuotes()
-                    Log.e("QuoteListViewModel", "getQuotesFromApi: Inserting data...")
-                    quoteDao.insertAll(response)
+                    insertFetchedQuotesIntoDatabase(response)
                 } catch (e: IOException) {
                     e.printStackTrace()
                     Log.e("QuoteListViewModel", "getQuotesFromApi: IOException")
@@ -51,5 +89,14 @@ class QuoteListViewModel(
             }
         }
         Log.e("QuoteListViewModel", "getQuotesFromApi: Database already has data")
+    }
+
+    /**
+     * Inserts fetched quotes into database
+     */
+    private suspend fun insertFetchedQuotesIntoDatabase(response: List<Quote>) {
+        quoteDao.clearAll()
+        Log.e("QuoteListViewModel", "getQuotesFromApi: Inserting data...")
+        quoteDao.insertAll(response)
     }
 }
