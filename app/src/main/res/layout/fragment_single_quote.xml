@@ -15,6 +15,7 @@
         app:cardBackgroundColor="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/blue"
         app:strokeWidth="@dimen/card_view_stroke_width">
@@ -29,6 +30,8 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivAuthorImage"
                 android:layout_width="@dimen/circle_view_image_width"
+                android:layout_marginTop="@dimen/circle_view_image_margin_top"
+
                 android:layout_height="@dimen/circle_view_image_height"
                 android:contentDescription="@string/contains_picture_of_stoic"
                 android:src="@drawable/stoic_marcus_aurelius_image"
