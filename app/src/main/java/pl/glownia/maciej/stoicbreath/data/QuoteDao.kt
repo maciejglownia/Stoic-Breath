@@ -8,21 +8,23 @@ import pl.glownia.maciej.stoicbreath.models.Quote
 interface QuoteDao {
 
     @Query("SELECT * FROM quotes")
-    fun getQuotesFromDatabase(): Flow<List<Quote>>
+    fun loadQuotes(): Flow<List<Quote>>
 
     @Query("SELECT * FROM quotes WHERE id = :id")
-    fun getQuoteById(id: Int): Flow<Quote>
+    fun loadQuoteById(id: Int): Flow<Quote>
 
-    // Needed to check if database contains any data
     @Query("SELECT COUNT(id) FROM quotes")
-    suspend fun getSizeOfTable(): Int
+    suspend fun loadSizeOfTable(): Int
+
+    @Query("SELECT * FROM quotes WHERE isFavorite = 1")
+    fun loadFavoriteQuotes(): Flow<List<Quote>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(quoteList: List<Quote>)
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun update(quote: Quote)
 
     @Query("DELETE FROM quotes")
-    suspend fun clearQuotes()
+    suspend fun clearAll()
 }
