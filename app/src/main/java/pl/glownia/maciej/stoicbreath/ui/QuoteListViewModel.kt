@@ -19,9 +19,15 @@ class QuoteListViewModel(
 
     private val quoteRepository: QuoteRepository = repository
 
+    /**
+     * Gets list of all quotes
+     */
     private val _quotes: LiveData<List<Quote>> = quoteRepository.getQuotes().asLiveData()
     val quotes: LiveData<List<Quote>> = _quotes
 
+    /**
+     * Gets list of favorites quotes
+     */
     private val _favoritesQuotes: LiveData<List<Quote>> =
         quoteRepository.getFavoriteQuotes().asLiveData()
     val favoritesQuotes: LiveData<List<Quote>> = _favoritesQuotes

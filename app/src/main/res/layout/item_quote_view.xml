@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:orientation="vertical"
+        app:cardBackgroundColor="@color/creme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,11 +27,12 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivAuthorImage"
-                android:layout_width="160dp"
+                android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:contentDescription="@string/contains_picture_of_stoic"
+                android:scaleType="centerCrop"
                 android:src="@drawable/stoic_marcus_aurelius_image" />
 
             <TextView
