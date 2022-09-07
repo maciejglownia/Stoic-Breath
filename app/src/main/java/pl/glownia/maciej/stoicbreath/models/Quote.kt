@@ -2,6 +2,7 @@ package pl.glownia.maciej.stoicbreath.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(
     tableName = "quotes"
@@ -11,5 +12,6 @@ data class Quote(
     val body: String,
     @PrimaryKey
     val id: Int,
-    val quotesource: String
-)
+    val quotesource: String,
+    var isFavorite: Boolean = false,
+) : Serializable
