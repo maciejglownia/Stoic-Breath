@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sentence_text_size">20sp</dimen>
+    <dimen name="sentence_padding">4dp</dimen>
+    <dimen name="author_padding">8dp</dimen>
+    <dimen name="source_padding">8dp</dimen>
+    <dimen name="circle_view_image_width">140dp</dimen>
+    <dimen name="circle_view_image_height">140dp</dimen>
+    <dimen name="linear_layout_padding_in_card_view">16dp</dimen>
+    <dimen name="main_layout_padding">16dp</dimen>
+    <dimen name="card_view_stroke_width">1dp</dimen>
+</resources>

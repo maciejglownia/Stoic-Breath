@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
-    android:padding="8dp">
+    android:orientation="vertical"
+    android:padding="@dimen/main_layout_padding">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvRandomQuote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:orientation="vertical"
-        app:cardBackgroundColor="@color/creme"
+        app:cardBackgroundColor="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/blue"
-        app:strokeWidth="1dp">
+        app:strokeWidth="@dimen/card_view_stroke_width">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/linear_layout_padding_in_card_view">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivAuthorImage"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:scaleType="centerCrop"
+                android:layout_width="@dimen/circle_view_image_width"
+                android:layout_height="@dimen/circle_view_image_height"
                 android:contentDescription="@string/contains_picture_of_stoic"
+                android:scaleType="centerCrop"
                 android:src="@drawable/stoic_marcus_aurelius_image" />
 
             <TextView
@@ -42,10 +40,10 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:gravity="center"
-                android:padding="4dp"
+                android:padding="@dimen/sentence_padding"
                 android:text="@string/sentence"
                 android:textColor="@android:color/black"
-                android:textSize="15sp"
+                android:textSize="@dimen/sentence_text_size"
                 android:textStyle="bold" />
 
             <TextView
@@ -54,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:maxLines="1"
-                android:padding="8dp"
+                android:padding="@dimen/author_padding"
                 android:text="@string/author"
                 android:textColor="@android:color/black" />
 
@@ -63,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingBottom="8dp"
+                android:padding="@dimen/source_padding"
                 android:text="@string/source"
                 android:textColor="@android:color/black"
                 android:textStyle="italic" />
@@ -86,9 +84,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:clipChildren="false"
+            android:contentDescription="@string/add_to_favorite_button"
             android:src="@drawable/ic_favorite"
+            app:backgroundTint="@color/blue"
             app:borderWidth="0dp"
+            app:elevation="0dp"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,9 +99,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:clipChildren="false"
+            android:contentDescription="@string/get_next_random_quote"
             android:src="@drawable/ic_random"
+            app:backgroundTint="@color/blue"
             app:borderWidth="0dp"
+            app:elevation="0dp"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
