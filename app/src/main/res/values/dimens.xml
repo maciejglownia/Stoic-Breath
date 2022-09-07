@@ -9,4 +9,5 @@
     <dimen name="linear_layout_padding_in_card_view">16dp</dimen>
     <dimen name="main_layout_padding">16dp</dimen>
     <dimen name="card_view_stroke_width">1dp</dimen>
+    <dimen name="floating_action_button_margin">32dp</dimen>
 </resources>
