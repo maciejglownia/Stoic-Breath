@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Stoic Breath</string>
+    <string name="sentence">\'\'Sentence\'\'</string>
+    <string name="author">~Author~</string>
+    <string name="source">Source</string>
+    <string name="contains_picture_of_stoic">Contains picture of stoic</string>
+    <string name="stoic_breath">Stoic Breath</string>
+    <string name="favorites">Favorites</string>
+    <string name="random_quote">Random Quote</string>
 </resources>

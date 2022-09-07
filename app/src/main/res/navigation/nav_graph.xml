@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/quoteListFragment"
-        android:name="pl.glownia.maciej.stoicbreath.ui.fragments.QuoteListFragment"
+        android:name="pl.glownia.maciej.stoicbreath.ui.fragments.QuotesListFragment"
         android:label="QuoteListFragment">
         <action
             android:id="@+id/action_quoteListFragment_to_singleQuoteFragment"
@@ -19,22 +19,18 @@
     <fragment
         android:id="@+id/singleQuoteFragment"
         android:name="pl.glownia.maciej.stoicbreath.ui.fragments.SingleQuoteFragment"
-        android:label="SingleQuoteFragment" />
-    <fragment
-        android:id="@+id/searchQuoteFragment"
-        android:name="pl.glownia.maciej.stoicbreath.ui.fragments.SearchQuoteFragment"
-        android:label="SearchQuoteFragment">
-        <action
-            android:id="@+id/action_searchQuoteFragment_to_singleQuoteFragment"
-            app:destination="@id/singleQuoteFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+        android:label="SingleQuoteFragment">
+        <argument
+            android:name="quote"
+            app:argType="pl.glownia.maciej.stoicbreath.models.Quote" />
     </fragment>
     <fragment
+        android:id="@+id/randomQuoteFragment"
+        android:name="pl.glownia.maciej.stoicbreath.ui.fragments.RandomQuoteFragment"
+        android:label="SearchQuoteFragment"></fragment>
+    <fragment
         android:id="@+id/savedQuoteFragment"
-        android:name="pl.glownia.maciej.stoicbreath.ui.fragments.SavedQuoteFragment"
+        android:name="pl.glownia.maciej.stoicbreath.ui.fragments.FavoriteQuotesFragment"
         android:label="SavedQuoteFragment">
         <action
             android:id="@+id/action_savedQuoteFragment_to_singleQuoteFragment"

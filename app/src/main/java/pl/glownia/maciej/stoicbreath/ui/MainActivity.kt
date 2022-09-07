@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import pl.glownia.maciej.stoicbreath.R
 import pl.glownia.maciej.stoicbreath.databinding.ActivityMainBinding
-import pl.glownia.maciej.stoicbreath.ui.fragments.QuoteListFragment
-import pl.glownia.maciej.stoicbreath.ui.fragments.SavedQuoteFragment
-import pl.glownia.maciej.stoicbreath.ui.fragments.SearchQuoteFragment
+import pl.glownia.maciej.stoicbreath.ui.fragments.QuotesListFragment
+import pl.glownia.maciej.stoicbreath.ui.fragments.FavoriteQuotesFragment
+import pl.glownia.maciej.stoicbreath.ui.fragments.RandomQuoteFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,9 +20,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.quoteListFragment -> replaceFragment(QuoteListFragment())
-                R.id.savedQuoteFragment -> replaceFragment(SavedQuoteFragment())
-                R.id.searchQuoteFragment -> replaceFragment(SearchQuoteFragment())
+                R.id.quoteListFragment -> replaceFragment(QuotesListFragment())
+                R.id.savedQuoteFragment -> replaceFragment(FavoriteQuotesFragment())
+                R.id.randomQuoteFragment -> replaceFragment(RandomQuoteFragment())
                 else -> {}
             }
             true

@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import pl.glownia.maciej.stoicbreath.QuoteApplication
 import pl.glownia.maciej.stoicbreath.adapters.QuoteListAdapter
 import pl.glownia.maciej.stoicbreath.data.QuoteDatabase
-import pl.glownia.maciej.stoicbreath.databinding.FragmentQuoteListBinding
+import pl.glownia.maciej.stoicbreath.databinding.FragmentQuotesListBinding
 import pl.glownia.maciej.stoicbreath.repository.QuoteRepository
 import pl.glownia.maciej.stoicbreath.ui.QuoteListViewModel
 import pl.glownia.maciej.stoicbreath.ui.QuoteListViewModelProviderFactory
 
-class QuoteListFragment : Fragment() {
+class QuotesListFragment : Fragment() {
 
     private val viewModel: QuoteListViewModel by activityViewModels() {
         QuoteListViewModelProviderFactory(
@@ -25,7 +25,7 @@ class QuoteListFragment : Fragment() {
         )
     }
 
-    private var _binding: FragmentQuoteListBinding? = null
+    private var _binding: FragmentQuotesListBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -33,19 +33,22 @@ class QuoteListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentQuoteListBinding.inflate(inflater, container, false)
+        _binding = FragmentQuotesListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = QuoteListAdapter {
-            val action = QuoteListFragmentDirections.actionQuoteListFragmentToSingleQuoteFragment()
+
+        val adapter = QuoteListAdapter() { quote ->
+            val action =
+                QuotesListFragmentDirections.actionQuoteListFragmentToSingleQuoteFragment(quote)
             this.findNavController().navigate(action)
         }
         viewModel.quotes.observe(this.viewLifecycleOwner) { quotes ->
             quotes.let {
-                adapter.submitList(it)
+                // Needs to be shuffled to display different quotes every time user want to see them
+                adapter.submitList(it.shuffled())
             }
         }
         binding.rvQuoteList.adapter = adapter

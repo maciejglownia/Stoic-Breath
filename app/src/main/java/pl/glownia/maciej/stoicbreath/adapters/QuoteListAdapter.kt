@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import pl.glownia.maciej.stoicbreath.R
 import pl.glownia.maciej.stoicbreath.databinding.ItemQuoteViewBinding
 import pl.glownia.maciej.stoicbreath.models.Quote
 
@@ -29,8 +30,15 @@ class QuoteListAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(quote: Quote) {
             binding.apply {
-                tvSentence.text = quote.body
-                tvAuthor.text = quote.author
+                when (quote.author) {
+                    "Marcus Aurelius" -> ivAuthorImage.setImageResource(R.drawable.stoic_marcus_aurelius_image)
+                    "Epictetus" -> ivAuthorImage.setImageResource(R.drawable.stoic_epictetus_image)
+                    "Seneca" -> ivAuthorImage.setImageResource(R.drawable.stoic_seneca_image)
+                }
+                val sentenceToDisplay = "''${quote.body}''"
+                tvSentence.text = sentenceToDisplay
+                val authorNameToDisplay = "~ ${quote.author} ~"
+                tvAuthor.text = authorNameToDisplay
                 tvSource.text = quote.quotesource
             }
         }
@@ -43,7 +51,7 @@ class QuoteListAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: QuoteListAdapter.QuoteViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: QuoteViewHolder, position: Int) {
         val quote = getItem(position)
         holder.itemView.setOnClickListener {
             onItemClicked(quote)
