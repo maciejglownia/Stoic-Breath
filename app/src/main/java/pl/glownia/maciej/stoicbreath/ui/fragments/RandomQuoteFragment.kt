@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import pl.glownia.maciej.stoicbreath.QuoteApplication
 import pl.glownia.maciej.stoicbreath.R
 import pl.glownia.maciej.stoicbreath.data.QuoteDatabase
@@ -15,6 +16,7 @@ import pl.glownia.maciej.stoicbreath.models.Quote
 import pl.glownia.maciej.stoicbreath.repository.QuoteRepository
 import pl.glownia.maciej.stoicbreath.ui.QuoteListViewModel
 import pl.glownia.maciej.stoicbreath.ui.QuoteListViewModelProviderFactory
+import kotlin.text.Typography.quote
 
 class RandomQuoteFragment : Fragment() {
 
@@ -40,10 +42,18 @@ class RandomQuoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        viewModel.getQuoteById().observe(viewLifecycleOwner, Observer { quote ->
+        viewModel.getQuoteById().observe(viewLifecycleOwner) { quote ->
             bind(quote)
-        })
+
+            binding.fabAddToFavorite.setOnClickListener {
+                viewModel.addQuoteToFavorites(quote)
+                Snackbar.make(view, "Quote added to favorites", Snackbar.LENGTH_LONG).show()
+            }
+
+            binding.fabGetNextRandom.setOnClickListener {
+                viewModel.getQuoteById().observe(viewLifecycleOwner) { quote -> bind(quote)}
+            }
+        }
     }
 
     private fun bind(quote: Quote) {
