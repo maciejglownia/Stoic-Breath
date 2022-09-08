@@ -1,16 +1,13 @@
 package pl.glownia.maciej.stoicbreath.ui
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import pl.glownia.maciej.stoicbreath.data.QuoteDao
 import pl.glownia.maciej.stoicbreath.models.Quote
 import pl.glownia.maciej.stoicbreath.repository.QuoteRepository
-import retrofit2.HttpException
-import java.io.IOException
+import pl.glownia.maciej.stoicbreath.utils.Constants
 
 class QuoteListViewModel(
     private val quoteDao: QuoteDao,
@@ -32,6 +29,12 @@ class QuoteListViewModel(
         quoteRepository.getFavoriteQuotes().asLiveData()
     val favoritesQuotes: LiveData<List<Quote>> = _favoritesQuotes
 
+    /**
+     * Gets status: LOADING, SUCCESS or ERROR when getting data from API
+     */
+    private val _status = MutableLiveData<QuoteApiStatus>()
+    val status: LiveData<QuoteApiStatus> = _status
+
     init {
         getQuotesFromApi()
     }
@@ -46,7 +49,7 @@ class QuoteListViewModel(
 
     private fun getRandomNumberInRangeOfTableSize() = (0..getSizeOfTable()).random()
 
-    private fun getSizeOfTable(): Int = quoteRepository.getSizeOfTable()
+    fun getSizeOfTable(): Int = quoteRepository.getSizeOfTable()
 
     /**
      * Adds quote to favorites
@@ -65,36 +68,22 @@ class QuoteListViewModel(
     }
 
     /**
-     * Gets quotes from Api if there are not in database
+     * Gets quotes from API if there are not in database
      */
     private fun getQuotesFromApi() {
-        Log.e(
-            "QuoteListViewModel",
-            "getQuotesFromApi: Is checking if database contains any data..."
-        )
-        val sizeOfTable = quoteRepository.getSizeOfTable()
-        if (sizeOfTable == 0) {
+        if (getSizeOfTable() == 0) {
             viewModelScope.launch {
-
-                Log.e(
-                    "QuoteListViewModel",
-                    "getQuotesFromApi: Database is empty so it is going to fetch data from Api"
-                )
+                _status.value = QuoteApiStatus.LOADING
+                delay(Constants.GETTING_QUOTES_FROM_API_TIME_DELAY)
                 try {
-                    Log.e("QuoteListViewModel", "getQuotesFromApi: Getting quotes from Api...")
                     val response = quoteRepository.getQuotesFromApi()
-                    Log.e("QuoteListViewModel", "getQuotesFromApi: Clearing database...")
+                    _status.value = QuoteApiStatus.SUCCESS
                     insertFetchedQuotesIntoDatabase(response)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                    Log.e("QuoteListViewModel", "getQuotesFromApi: IOException")
-                } catch (e: HttpException) {
-                    e.printStackTrace()
-                    Log.e("QuoteListViewModel", "getQuotesFromApi: HttpException")
+                } catch (e: Exception) {
+                    _status.value = QuoteApiStatus.ERROR
                 }
             }
         }
-        Log.e("QuoteListViewModel", "getQuotesFromApi: Database already has data")
     }
 
     /**
@@ -102,7 +91,6 @@ class QuoteListViewModel(
      */
     private suspend fun insertFetchedQuotesIntoDatabase(response: List<Quote>) {
         quoteDao.clearAll()
-        Log.e("QuoteListViewModel", "getQuotesFromApi: Inserting data...")
         quoteDao.insertAll(response)
     }
 }
