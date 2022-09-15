@@ -11,4 +11,5 @@
     <string name="get_next_random_quote">Get next random quote</string>
     <string name="status_image_for_loading_or_error">Status image for loading or error</string>
     <string name="info_about_status">Info about status</string>
+    <string name="no_quote_has_been_added_to_favorites_yet">No quote has been added to favorites yet.</string>
 </resources>
