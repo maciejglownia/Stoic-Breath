@@ -84,9 +84,16 @@ class FavoriteQuotesFragment : Fragment() {
          * Display favorites quotes from database
          */
         viewModel.favoritesQuotes.observe(viewLifecycleOwner) { quotes ->
-            adapter.submitList(quotes)
+            if (quotes.isEmpty()) {
+                binding.tvNoQuotesInFavoritesYet.visibility = View.VISIBLE
+                binding.rvSavedQuote.visibility = View.GONE
+            } else {
+                adapter.submitList(quotes)
+                binding.rvSavedQuote.adapter = adapter
+                binding.rvSavedQuote.layoutManager = LinearLayoutManager(this.context)
+                binding.tvNoQuotesInFavoritesYet.visibility = View.GONE
+                binding.rvSavedQuote.visibility = View.VISIBLE
+            }
         }
-        binding.rvSavedQuote.adapter = adapter
-        binding.rvSavedQuote.layoutManager = LinearLayoutManager(this.context)
     }
 }

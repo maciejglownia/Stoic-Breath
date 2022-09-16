@@ -3,6 +3,8 @@ package pl.glownia.maciej.stoicbreath.ui
 import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import pl.glownia.maciej.stoicbreath.data.QuoteDao
 import pl.glownia.maciej.stoicbreath.models.Quote
