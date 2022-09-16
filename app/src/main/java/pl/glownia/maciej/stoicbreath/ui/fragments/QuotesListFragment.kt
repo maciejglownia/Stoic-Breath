@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import pl.glownia.maciej.stoicbreath.NavGraphDirections
 import pl.glownia.maciej.stoicbreath.QuoteApplication
 import pl.glownia.maciej.stoicbreath.R
 import pl.glownia.maciej.stoicbreath.adapters.QuoteListAdapter
@@ -44,10 +45,8 @@ class QuotesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = QuoteListAdapter() { quote ->
-            val action =
-                QuotesListFragmentDirections.actionQuoteListFragmentToSingleQuoteFragment(quote)
-            this.findNavController().navigate(action)
+        val adapter = QuoteListAdapter() {
+            this.findNavController().navigate(NavGraphDirections.globalActionToSingleQuote(it))
         }
         /**
          * Happens once at the beginning after installation the app

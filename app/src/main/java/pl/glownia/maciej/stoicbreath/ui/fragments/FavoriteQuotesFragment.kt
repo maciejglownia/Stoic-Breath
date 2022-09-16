@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import pl.glownia.maciej.stoicbreath.NavGraphDirections
 import pl.glownia.maciej.stoicbreath.QuoteApplication
 import pl.glownia.maciej.stoicbreath.adapters.QuoteListAdapter
 import pl.glownia.maciej.stoicbreath.data.QuoteDatabase
@@ -44,9 +45,7 @@ class FavoriteQuotesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = QuoteListAdapter() {
-            val action =
-                FavoriteQuotesFragmentDirections.actionSavedQuoteFragmentToSingleQuoteFragment(it)
-            this.findNavController().navigate(action)
+            this.findNavController().navigate(NavGraphDirections.globalActionToSingleQuote(it))
         }
 
         /**

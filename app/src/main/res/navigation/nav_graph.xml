@@ -3,19 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
     app:startDestination="@id/quoteListFragment">
-
+    <action
+        android:id="@+id/global_action_to_single_quote"
+        app:destination="@id/singleQuoteFragment">
+        <argument
+            android:name="quote"
+            app:argType="pl.glownia.maciej.stoicbreath.models.Quote" />
+    </action>
     <fragment
         android:id="@+id/quoteListFragment"
         android:name="pl.glownia.maciej.stoicbreath.ui.fragments.QuotesListFragment"
-        android:label="QuoteListFragment">
-        <action
-            android:id="@+id/action_quoteListFragment_to_singleQuoteFragment"
-            app:destination="@id/singleQuoteFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
+        android:label="QuoteListFragment" />
     <fragment
         android:id="@+id/singleQuoteFragment"
         android:name="pl.glownia.maciej.stoicbreath.ui.fragments.SingleQuoteFragment"
@@ -31,13 +29,5 @@
     <fragment
         android:id="@+id/savedQuoteFragment"
         android:name="pl.glownia.maciej.stoicbreath.ui.fragments.FavoriteQuotesFragment"
-        android:label="SavedQuoteFragment">
-        <action
-            android:id="@+id/action_savedQuoteFragment_to_singleQuoteFragment"
-            app:destination="@id/singleQuoteFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
+        android:label="SavedQuoteFragment" />
 </navigation>

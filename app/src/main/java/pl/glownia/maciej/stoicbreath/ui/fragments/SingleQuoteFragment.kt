@@ -41,12 +41,11 @@ class SingleQuoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val quote = args.quote
         binding.cvSingleQuote.apply {
-            bind(quote)
+            bind(args.quote)
         }
         binding.fabAddToFavorite.setOnClickListener {
-            viewModel.addQuoteToFavorites(quote)
+            viewModel.addQuoteToFavorites(args.quote)
             Snackbar.make(view, "Quote added to favorites", Snackbar.LENGTH_LONG).show()
         }
     }
