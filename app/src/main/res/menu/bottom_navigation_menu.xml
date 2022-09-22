@@ -7,7 +7,7 @@
         android:title="@string/stoic_breath" />
 
     <item
-        android:id="@+id/savedQuoteFragment"
+        android:id="@+id/favoritesQuoteFragment"
         android:icon="@drawable/ic_favorite"
         android:title="@string/favorites" />
 

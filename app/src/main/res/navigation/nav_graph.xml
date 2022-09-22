@@ -13,21 +13,26 @@
     <fragment
         android:id="@+id/quoteListFragment"
         android:name="pl.glownia.maciej.stoicbreath.ui.fragments.QuotesListFragment"
-        android:label="QuoteListFragment" />
+        android:label="@string/stoic_breath" />
     <fragment
         android:id="@+id/singleQuoteFragment"
         android:name="pl.glownia.maciej.stoicbreath.ui.fragments.SingleQuoteFragment"
-        android:label="SingleQuoteFragment">
+        android:label="@string/single_quote">
         <argument
             android:name="quote"
             app:argType="pl.glownia.maciej.stoicbreath.models.Quote" />
+        <action
+            android:id="@+id/action_singleQuoteFragment_to_quoteListFragment"
+            app:destination="@id/quoteListFragment"
+            app:popUpTo="@id/quoteListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/randomQuoteFragment"
         android:name="pl.glownia.maciej.stoicbreath.ui.fragments.RandomQuoteFragment"
-        android:label="SearchQuoteFragment"></fragment>
+        android:label="@string/random_quote" />
     <fragment
-        android:id="@+id/savedQuoteFragment"
+        android:id="@+id/favoritesQuoteFragment"
         android:name="pl.glownia.maciej.stoicbreath.ui.fragments.FavoriteQuotesFragment"
-        android:label="SavedQuoteFragment" />
+        android:label="@string/favorites" />
 </navigation>

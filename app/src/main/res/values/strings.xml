@@ -7,6 +7,7 @@
     <string name="stoic_breath">Stoic Breath</string>
     <string name="favorites">Favorites</string>
     <string name="random_quote">Random Quote</string>
+    <string name="single_quote">Single Quote</string>
     <string name="add_to_favorite_button">Add to favorite button</string>
     <string name="get_next_random_quote">Get next random quote</string>
     <string name="status_image_for_loading_or_error">Status image for loading or error</string>
