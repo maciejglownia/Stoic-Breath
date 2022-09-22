@@ -1,41 +1,55 @@
 package pl.glownia.maciej.stoicbreath.ui
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import pl.glownia.maciej.stoicbreath.R
 import pl.glownia.maciej.stoicbreath.databinding.ActivityMainBinding
-import pl.glownia.maciej.stoicbreath.ui.fragments.QuotesListFragment
-import pl.glownia.maciej.stoicbreath.ui.fragments.FavoriteQuotesFragment
-import pl.glownia.maciej.stoicbreath.ui.fragments.RandomQuoteFragment
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.quoteListFragment -> replaceFragment(QuotesListFragment())
-                R.id.savedQuoteFragment -> replaceFragment(FavoriteQuotesFragment())
-                R.id.randomQuoteFragment -> replaceFragment(RandomQuoteFragment())
-                else -> {}
-            }
-            true
-        }
+        // Get the navigation host fragment from this Activity
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.navHostFragment) as NavHostFragment
+        // Instantiate the navController using the NavHostFragment
+        navController = navHostFragment.findNavController()
+
+        // Handle all fragments from bottom navigation menu as equal to each other
+        appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.quoteListFragment, R.id.favoritesQuoteFragment, R.id.randomQuoteFragment)
+        )
+
+        setSupportActionBar(binding.toolbar)
+        // Make sure actions in the ActionBar get propagated to the NavController
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        binding.bottomNavigationView.setupWithNavController(navController)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
 
     /**
-     * This is how we replace frame layout with the fragment
+     * Enables back button support. Simply navigates one element up on the stack.
      */
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.flFragment, fragment)
-        fragmentTransaction.commit()
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

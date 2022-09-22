@@ -46,7 +46,7 @@ class SingleQuoteFragment : Fragment() {
         }
         binding.fabAddToFavorite.setOnClickListener {
             viewModel.addQuoteToFavorites(args.quote)
-            Snackbar.make(view, "Quote added to favorites", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, "Quote added to favorites", Snackbar.LENGTH_SHORT).show()
         }
     }
 
@@ -63,5 +63,10 @@ class SingleQuoteFragment : Fragment() {
             tvAuthor.text = authorNameToDisplay
             tvSource.text = quote.quotesource
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

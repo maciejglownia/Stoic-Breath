@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -44,12 +45,12 @@ class FavoriteQuotesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = QuoteListAdapter() {
-            this.findNavController().navigate(NavGraphDirections.globalActionToSingleQuote(it))
+            val adapter = QuoteListAdapter() {
+                this.findNavController().navigate(NavGraphDirections.globalActionToSingleQuote(it))
         }
 
         /**
-         * Handle deleting quote form favorites
+         * Handle deleting quote from favorites
          */
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
@@ -94,5 +95,9 @@ class FavoriteQuotesFragment : Fragment() {
                 binding.rvSavedQuote.visibility = View.VISIBLE
             }
         }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

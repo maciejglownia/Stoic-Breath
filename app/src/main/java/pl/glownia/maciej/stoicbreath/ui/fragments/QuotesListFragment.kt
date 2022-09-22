@@ -30,14 +30,24 @@ class QuotesListFragment : Fragment() {
         )
     }
 
+    // We can't inflate the layout until onCreateView() is called, that's why null
     private var _binding: FragmentQuotesListBinding? = null
+
+    // This property is only valid between onCreateView and onDestroyView.
+    // get() means this property is "get-only". We can get the value, but once assigned
+    // (as it is here), we can't assign it to something else.
     private val binding get() = _binding!!
 
+    /**
+     * With fragments, the layout is inflated in onCreateView().
+     * Need to implement onCreateView() by inflating the view, setting the value of _binding, and returning the root view.
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Retrieve and inflate the layout for this fragment
         _binding = FragmentQuotesListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -46,12 +56,10 @@ class QuotesListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = QuoteListAdapter() {
-            this.findNavController().navigate(NavGraphDirections.globalActionToSingleQuote(it))
+            findNavController().navigate(NavGraphDirections.globalActionToSingleQuote(it))
         }
-        /**
-         * Happens once at the beginning after installation the app
-         * Shows user that data is loading and saving into database
-         */
+        // Happens once at the beginning after installation the app
+        // Shows user that data is loading and saving into database
         if (viewModel.getSizeOfTable() == 0) {
             viewModel.status.observe(this.viewLifecycleOwner) { status ->
                 when (status) {
@@ -75,9 +83,7 @@ class QuotesListFragment : Fragment() {
                 }
             }
         }
-        /**
-         * Displays shuffled list of quotes
-         */
+        // Displays shuffled list of quotes
         viewModel.quotes.observe(this.viewLifecycleOwner) { quotes ->
             quotes.let {
                 // Needs to be shuffled to display different quotes every time user want to see them
@@ -86,5 +92,10 @@ class QuotesListFragment : Fragment() {
         }
         binding.rvQuoteList.adapter = adapter
         binding.rvQuoteList.layoutManager = LinearLayoutManager(this.context)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
