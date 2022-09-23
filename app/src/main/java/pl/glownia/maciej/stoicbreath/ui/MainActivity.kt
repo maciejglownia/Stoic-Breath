@@ -1,6 +1,7 @@
 package pl.glownia.maciej.stoicbreath.ui
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -12,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import pl.glownia.maciej.stoicbreath.R
 import pl.glownia.maciej.stoicbreath.databinding.ActivityMainBinding
+import pl.glownia.maciej.stoicbreath.ui.fragments.QuotesListFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,6 +44,14 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setupWithNavController(navController)
     }
 
+    /**
+     * Creates an option menu
+     */
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.options_menu, menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
@@ -50,6 +60,7 @@ class MainActivity : AppCompatActivity() {
      * Enables back button support. Simply navigates one element up on the stack.
      */
     override fun onSupportNavigateUp(): Boolean {
+        QuotesListFragment()
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }
