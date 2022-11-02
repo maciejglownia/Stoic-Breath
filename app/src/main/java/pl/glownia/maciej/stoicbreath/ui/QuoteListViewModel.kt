@@ -1,15 +1,14 @@
 package pl.glownia.maciej.stoicbreath.ui
 
-import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import pl.glownia.maciej.stoicbreath.data.QuoteDao
 import pl.glownia.maciej.stoicbreath.models.Quote
 import pl.glownia.maciej.stoicbreath.repository.QuoteRepository
 import pl.glownia.maciej.stoicbreath.utils.Constants
+import retrofit2.HttpException
+import java.io.IOException
 
 class QuoteListViewModel(
     private val quoteDao: QuoteDao,
@@ -81,7 +80,9 @@ class QuoteListViewModel(
                     val response = quoteRepository.getQuotesFromApi()
                     _status.value = QuoteApiStatus.SUCCESS
                     insertFetchedQuotesIntoDatabase(response)
-                } catch (e: Exception) {
+                } catch (e: IOException) {
+                    _status.value = QuoteApiStatus.ERROR
+                } catch (e: HttpException) {
                     _status.value = QuoteApiStatus.ERROR
                 }
             }
