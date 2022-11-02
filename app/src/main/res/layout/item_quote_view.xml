@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="@dimen/main_layout_padding">
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvSingleQuoteItem"
@@ -40,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:gravity="center"
-                android:maxLines="6"
+                android:maxLines="2"
                 android:padding="@dimen/sentence_padding"
                 android:text="@string/sentence"
                 android:textColor="@android:color/black"
