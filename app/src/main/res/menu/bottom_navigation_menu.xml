@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/quoteListFragment"
+        android:icon="@drawable/ic_quote"
+        android:title="@string/stoic_breath" />
+
+    <item
+        android:id="@+id/favoritesQuoteFragment"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favorites" />
+
+    <item
+        android:id="@+id/randomQuoteFragment"
+        android:icon="@drawable/ic_random"
+        android:title="@string/random_quote" />
+</menu>

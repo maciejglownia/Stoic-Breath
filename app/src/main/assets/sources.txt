@@ -1,0 +1,9 @@
+Sources I used for icons, images, and other needed data to create this application.
+
+1. Images of stoics:
+    a) Marcus Aurelius: https://en.wikipedia.org/wiki/File:Marcus_Aurelius_Glyptothek_M%C3%BCnchen.jpg
+    b) Epictetus: https://commons.wikimedia.org/wiki/File:Epictetus.jpg
+    c) Seneca: https://en.wikipedia.org/wiki/Seneca_the_Younger#/media/File:Duble_herma_of_Socrates_and_Seneca_Antikensammlung_Berlin_07.jpg
+
+2. Icon (launcher):
+    a) https://www.flaticon.com/free-icon/open-mouth_3895197?k=1663225313515&log-in=google
