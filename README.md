@@ -33,6 +33,7 @@ User is able to:
 - [Florian Walther](https://codinginflow.com/)
 - [Flaticon - free icons](https://www.flaticon.com/free-icons/android) - [App icon source](https://github.com/maciejglownia/Stoic-Breath/blob/739493d76184a62b2b8ae9ae9041450fd76a73e2/app/src/main/assets/sources.txt)
 - [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) [Stoic images source](https://github.com/maciejglownia/Stoic-Breath/blob/739493d76184a62b2b8ae9ae9041450fd76a73e2/app/src/main/assets/sources.txt)
+- [Miro - architecture diagram](https://miro.com/)
 
 ### Dear Visitor
 If you see an opportunity to improve my code do not hesitate to contact me:
